@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA4MPjAM2Q1AD++v8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMzAAAAAAMzMzMwAAAAAzAzAzAAAAADMDMDMAAAAAAzADMAAAAAABAAAQAAAAAAAQAQAAAAAAAAIgAAAAAAABEiEQAAAAAAEQARAAAAAAAAAAAAAAAAAAAAAAAADyTwAA4AcAAPAPAAD4HwAA8A8AAOAHAADgBwAA4AcAAOAHAADgBwAA4AcAAMADAADAAwAAyZMAAJ/5AAC//QAA" rel="icon" type="image/x-icon">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawaii Bomb Launcher ฅ^•ﻌ•^ฅ</title>
+    <style>
+        /* Base Styles */
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffdde1);
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            color: #ff69b4;
+            transition: background 0.5s, color 0.5s;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px white;
+            color: #ff69b4;
+            transition: color 0.5s;
+        }
+        .attack-input {
+            padding: 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 20px;
+            width: 60%;
+            margin-top: 20px;
+            transition: background 0.5s, color 0.5s; /* Smooth transition for input fields */
+        }
+        .attack-button {
+            background: #ff69b4;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .attack-button:hover {
+            background: #ff1493;
+            transform: scale(1.1);
+        }
+        .nyan-cat {
+            width: 150px;
+            margin-top: 30px;
+            transition: all 0.5s ease;
+        }
+
+        /* Dark Theme and Glitch Effect */
+        .dark-mode {
+            background: black;
+            color: red;
+        }
+        .dark-mode .attack-input {
+            background: #333;
+            color: red;
+            border-color: red;
+        }
+        .glitch {
+            position: relative;
+            display: inline-block;
+            color: red;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .glitch:before, .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: red;
+            z-index: -1;
+            animation: glitch-anim 1s infinite;
+        }
+        .glitch:before {
+            left: 2px;
+            text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
+            animation-delay: 0.2s;
+        }
+        .glitch:after {
+            left: -2px;
+            text-shadow: 1px 0 red, 0 1px red, -1px 0 red, 0 -1px red;
+            animation-delay: 0.4s;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Red Button Styling */
+        .attack-button.red {
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title" id="title">≽^•⩊•^≼ Kawaii Bomb Launcher ≽^•⩊•^≼</h1>
+        <img src="https://i.ibb.co/zHGCNwbL/6a215df49524df23bbb9ebbd2da7b45f-w200.gif" class="nyan-cat" id="nyanCatImage">
+        <p>Enter your Pookie Domain:</p>
+        <input type="text" id="targetIp" class="attack-input" placeholder="e.g., your-duckdns-domain.duckdns.org">
+        <br>
+        <button class="attack-button" id="startButton" onclick="startTest()">Start Load Test</button>
+        <p id="status"> Ready to test your server performance! </p>
+
+        <hr>
+
+        <p>Enter a domain to get its IP address:</p>
+        <input type="text" id="domain" class="attack-input" placeholder="e.g., example.com">
+        <br>
+        <button class="attack-button" id="lookupButton" onclick="lookupIp()">Lookup IP</button>
+        <p id="ipStatus"> Enter a domain to get its IP address. </p>
+    </div>
+
+    <script>
+        function startTest() {
+            document.getElementById("status").innerText = "Please wait the magic to happen";
+            let targetIp = document.getElementById("targetIp").value;
+
+            // Change to dark theme with blood-red
+            document.body.classList.add("dark-mode");
+
+            // Change title to "You think it's a Joke?" and add glitch effect
+            let title = document.getElementById("title");
+            title.innerText = "You think it's a Joke?";
+            title.setAttribute("data-text", title.innerText);
+            title.classList.add("glitch");
+
+            // Change the image to a scary one
+            document.getElementById("nyanCatImage").src = "https://media.tenor.com/lINLTLRoEFAAAAAj/scary.gif"; // Dark GIF
+            document.getElementById("nyanCatImage").classList.add("nyan-cat-glitch");
+
+            // Change button to red
+            document.getElementById("startButton").classList.add("red");
+            document.getElementById("lookupButton").classList.add("red");
+
+            // Change text input to red and dark mode
+            document.querySelectorAll(".attack-input").forEach(input => {
+                input.style.background = "#333";
+                input.style.color = "red";
+                input.style.borderColor = "red";
+            });
+
+            fetch("/test?ip=" + targetIp)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        document.getElementById("status").innerText = "Average response time: " + data.avg_response_ms + " ms";
+                    } else {
+                        document.getElementById("status").innerText = "Error: " + data.message;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Error: " + error;
+                });
+        }
+
+        function lookupIp() {
+            let domain = document.getElementById("domain").value;
+            fetch("/lookup_ip?domain=" + domain)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        document.getElementById("ipStatus").innerText = "IP Address: " + data.ip_address;
+                    } else {
+                        document.getElementById("ipStatus").innerText = "Error: " + data.message;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("ipStatus").innerText = "Error: " + error;
+                });
+        }
+    </script>
+</body>
+</html>
